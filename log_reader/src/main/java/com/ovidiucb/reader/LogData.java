@@ -1,3 +1,5 @@
+package com.ovidiucb.reader;
+
 /**
  * Created by ovidiucb
  */
