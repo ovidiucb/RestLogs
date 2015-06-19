@@ -1,5 +1,7 @@
 package com.ovidiucb.reader;
 
+import persistence.LogEntry;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,21 +9,17 @@ import java.util.regex.Pattern;
  * Created by ovidiucb
  */
 public class LogParser {
-    public static LogData parseEntry(String entry) {
-        LogData logData = null;
+    public static LogEntry parseEntry(String entry) {
+        LogEntry logEntry = null;
 
         Pattern entryPattern = Pattern.compile(getAccessLogRegex(),Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
         Matcher entryMatcher = entryPattern.matcher(entry);;
 
         if(entryMatcher.matches()) {
-            logData = new LogData();
-
-            logData.setIpAddress(entryMatcher.group(1));
-            logData.setStatusCode(entryMatcher.group(6));
-            logData.setTraffic(entryMatcher.group(7));
+            logEntry = new LogEntry(entryMatcher.group(1), entryMatcher.group(6), entryMatcher.group(7));
         }
 
-        return logData;
+        return logEntry;
     }
 
     private static String getAccessLogRegex()
