@@ -1,4 +1,4 @@
-package persistence;
+package com.ovidiucb.persistence;
 
 /**
  * Created by ovidiucb

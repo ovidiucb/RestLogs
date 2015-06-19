@@ -1,4 +1,4 @@
-package persistence;
+package com.ovidiucb.persistence;
 
 import org.springframework.data.repository.CrudRepository;
 

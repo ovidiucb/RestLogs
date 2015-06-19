@@ -1,4 +1,4 @@
-package persistence;
+package com.ovidiucb.persistence;
 
 import com.ovidiucb.reader.LogReader;
 import org.springframework.beans.factory.annotation.Autowired;

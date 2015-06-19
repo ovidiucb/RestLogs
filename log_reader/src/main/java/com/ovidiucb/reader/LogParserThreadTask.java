@@ -1,8 +1,7 @@
 package com.ovidiucb.reader;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import persistence.LogEntry;
-import persistence.LogEntryRepository;
+import com.ovidiucb.persistence.LogEntry;
+import com.ovidiucb.persistence.LogEntryRepository;
 
 import java.io.*;
 import java.util.zip.GZIPInputStream;
