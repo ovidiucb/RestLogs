@@ -11,6 +11,7 @@
 
     <modules>
         <module>log_reader</module>
+        <module>web_app</module>
     </modules>
 
     <parent>
