@@ -8,16 +8,15 @@
     <artifactId>RestLogs</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
+
     <modules>
         <module>log_reader</module>
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
-        </dependency>
-    </dependencies>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.4.RELEASE</version>
+    </parent>
 
 </project>
