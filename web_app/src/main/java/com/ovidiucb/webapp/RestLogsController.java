@@ -1,4 +1,4 @@
-package com.ovidiucb.persistence;
+package com.ovidiucb.webapp;
 
 /**
  * Created by ovidiucb
