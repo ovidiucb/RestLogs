@@ -1,6 +1,6 @@
 package com.ovidiucb.reader;
 
-import com.ovidiucb.persistence.LogEntry;
+import com.ovidiucb.webapp.LogEntry;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

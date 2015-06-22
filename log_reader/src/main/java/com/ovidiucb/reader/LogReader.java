@@ -1,6 +1,6 @@
 package com.ovidiucb.reader;
 
-import com.ovidiucb.persistence.LogEntryRepository;
+import com.ovidiucb.webapp.LogEntryRepository;
 
 import java.io.*;
 import java.util.concurrent.ExecutorService;
