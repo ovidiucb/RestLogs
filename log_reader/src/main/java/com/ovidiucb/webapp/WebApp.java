@@ -25,11 +25,5 @@ public class WebApp  implements CommandLineRunner {
     public void run(String... args) throws Exception {
         repository.deleteAll();
         LogReader.readFilesInFolder(new File("LOGS"), repository);
-
-        List<LogEntry> entries = repository.findByIpAddress("62.210.181.156");
-
-        for (LogEntry e : entries) {
-            System.out.println(e);
-        }
     }
 }

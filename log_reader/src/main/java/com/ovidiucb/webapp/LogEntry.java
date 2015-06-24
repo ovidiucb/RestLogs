@@ -18,6 +18,18 @@ public class LogEntry {
     private String statusCode;
     private String traffic;
 
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public String getTraffic() {
+        return traffic;
+    }
+
     protected LogEntry() {}
 
     public LogEntry(String ipAddress, String statusCode, String traffic) {
