@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class LogReader {
     public static void readFilesInFolder(final File folder, LogEntryRepository repository) {
-        ExecutorService executorService = Executors.newFixedThreadPool(4);
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
 
         for (final File entry : folder.listFiles()) {
             if (entry.isDirectory()) {
