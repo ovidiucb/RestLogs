@@ -29,7 +29,6 @@ public class LogParserThreadTask implements Runnable {
 
             while (line != null) {
                 LogEntry entry = LogParser.parseEntry(line);
-                //System.out.println(entry);
 
                 if (entry != null) {
                     repository.save(entry);

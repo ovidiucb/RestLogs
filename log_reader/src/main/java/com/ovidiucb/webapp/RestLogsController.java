@@ -1,13 +1,18 @@
 package com.ovidiucb.webapp;
 
+import com.ovidiucb.reader.LogReader;
 import com.ovidiucb.webapp.exceptions.BadRequestException;
+import com.ovidiucb.webapp.exceptions.InvalidMethodException;
 import com.ovidiucb.webapp.exceptions.InvalidUserException;
 import com.ovidiucb.webapp.exceptions.IpNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorController;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 /**
@@ -18,9 +23,43 @@ public class RestLogsController implements ErrorController {
     private static final int SUCCESS = 200;
     private static final int NOT_FOUND = 404;
     private static final String DEFAULT_USER_ID = "admin";
+    private static final String UPLOAD_DIRECTORY = "LOGS/";
 
     @Autowired
     LogEntryRepository repository;
+
+    @RequestMapping(value="/logs/upload", method=RequestMethod.GET)
+    public @ResponseBody String provideUploadInfo() {
+        throw new InvalidMethodException();
+    }
+
+    @RequestMapping(value="/logs/upload", method=RequestMethod.POST)
+    public @ResponseBody String upload(@RequestParam("file") MultipartFile[] files) {
+        if (files.length > 0) {
+            for (MultipartFile file : files) {
+                String name = file.getOriginalFilename();
+                String fullFileName = new StringBuilder().append(UPLOAD_DIRECTORY).append(name).toString();
+                File f = new File(fullFileName);
+
+                f.getParentFile().mkdirs();
+
+                try {
+                    byte[] bytes = files[0].getBytes();
+                    BufferedOutputStream stream =
+                            new BufferedOutputStream(new FileOutputStream(new File(fullFileName)));
+                    stream.write(bytes);
+                    stream.close();
+                    LogReader.readFile(f, repository);
+                } catch (Exception e) {
+                    return "You failed to upload " + name + " => " + e.getMessage();
+                }
+            }
+        } else {
+            return "You failed to upload because no files were selected.";
+        }
+
+        return new StringBuilder().append("You successfully uploaded file(s)").append("!").append("<br><br>").toString();
+    }
 
     @RequestMapping(value = "/logs/statistics/{ipAddress}/traffic")
     public @ResponseBody String getStatistics(@PathVariable("ipAddress") String ipAddress,
