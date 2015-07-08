@@ -14,17 +14,8 @@ import java.util.List;
  * Created by ovidiucb
  */
 @SpringBootApplication
-@ComponentScan
-public class WebApp  implements CommandLineRunner {
-    @Autowired
-    public LogEntryRepository repository;
-
+public class WebApp {
     public static void main(String[] args) {
         SpringApplication.run(WebApp.class);
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        repository.deleteAll();
     }
 }

@@ -1,10 +1,7 @@
 package com.ovidiucb.webapp;
 
 import com.ovidiucb.reader.LogReader;
-import com.ovidiucb.webapp.exceptions.BadRequestException;
-import com.ovidiucb.webapp.exceptions.InvalidMethodException;
-import com.ovidiucb.webapp.exceptions.InvalidUserException;
-import com.ovidiucb.webapp.exceptions.IpNotFoundException;
+import com.ovidiucb.webapp.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +16,7 @@ import java.util.List;
  * Created by ovidiucb
  */
 @RestController
-public class RestLogsController implements ErrorController {
+public class RestLogsController extends ExceptionHandlerHelper {
     private static final int SUCCESS = 200;
     private static final int NOT_FOUND = 404;
     private static final String DEFAULT_USER_ID = "admin";
@@ -97,11 +94,6 @@ public class RestLogsController implements ErrorController {
         }
 
         return String.format("Total traffic: %d bytes, success: %d, not found: %d", traffic, success, notFound);
-    }
-
-    @RequestMapping(value="/error")
-    public @ResponseBody String getError() {
-        throw new BadRequestException();
     }
 
     @Override
